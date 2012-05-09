@@ -115,7 +115,7 @@ This should try to login with Facebook, and upon acceptance as a user, you shoul
           redirect_to root_url, :notice => "Signed in!"
         end
 
-This assigns the hash from Facebook into an ```auth``` variable. It then checks if a user exists and if not, it calls the ```create_with_omniauth(auth)``` method we defined in the ```User``` model. Lastly, it sets the ```session[:user_id]``` to the users id and redirects back to the homepage with a notice of "Signed in!".
+  This assigns the hash from Facebook into an ```auth``` variable. It then checks if a user exists and if not, it calls     the ```create_with_omniauth(auth)``` method we defined in the ```User``` model. Lastly, it sets the ```session[:user_id]``` to the users id and redirects back to the homepage with a notice of "Signed in!".
 
 2. Add a new action to your sessions controller:
 
