@@ -1,5 +1,5 @@
 Quick Omniauth-Facebook Demo
--------------------------------
+============================
 
 
 Omniauth is an easy way to add authentication to your Rails app if you don't need username/password. In this example I demo how to add Facebook authentication to your app. 
@@ -13,7 +13,8 @@ This tutorial refers to the example code I used to give my CA lightning talk on 
 3. The gem homepage of course! - https://github.com/mkdynamic/omniauth-facebook
 
 
-== Getting Started
+## Getting Started
+
 
 1. At the command prompt, create a new Rails application:
        <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
@@ -28,7 +29,7 @@ This tutorial refers to the example code I used to give my CA lightning talk on 
 You should now have omniauth-facebook ready to go. 
 
 
-== Generate a User Model
+## Generate a User Model
 
 1. In this case we will generate a User model with 4 attributes. Provider will be whichever strategy we are going to use (in this case Facebook), uid is the id we get back from that provider. We select name and email as the other attributes to fulfill the minimum requirements to get our app working. 
 
@@ -38,7 +39,7 @@ Then
 
   rake db:migrate
   
-== Set up Authentication
+## Set up Authentication
 
 1. Create a new file called ```omniauth.rb``` in the ```config/initializers``` directory
 
@@ -55,7 +56,7 @@ Then
 
 3. Create a new app at http://developers.facebook.com/ (remember to enter http://localhost:3000) as your site URL
 
-== Generate a Sessions Controller
+## Generate a Sessions Controller
 
 1. We are going to want to use sessions to store information about when a user is logged in and signed out. Therefore we need to:
 
@@ -69,7 +70,7 @@ Then
   
 * This will output in YAML format the hash we get back from Facebook. 
 
-== Create Some Routes
+## Create Some Routes
 
 1. Add these routes to ```config/routes.rb```
 
@@ -79,10 +80,10 @@ Then
   
   match '/signin' => 'sessions#new', :as => :signin
   
-# The first route defined above will direct the callback from Facebook to the sessions#create action. If you think
+The first route defined above will direct the callback from Facebook to the sessions#create action. If you think
 about it in terms of hash being returned from Facebook then you can see how we will set up the create action to take in that hash and check if a user exists or create a new user using that information. 
 
-== OK time to give it a test run...
+## OK time to give it a test run...
 
 1. Hit ```rails s``` and fire up your browser to http://localhost:3000
 
@@ -90,7 +91,7 @@ about it in terms of hash being returned from Facebook then you can see how we w
 
 This should try to login with Facebook, and upon acceptance as a user, you should see a hash of information about the user displayed on your screen. 
 
-== Store User Data in User Object
+## Store User Data in User Object
 
 1. Add this code to your ```User.rb``` file
 
@@ -107,7 +108,7 @@ This should try to login with Facebook, and upon acceptance as a user, you shoul
   
 * When called this method will try and create a new user using the values of the keys in the ```auth``` hash which we will define in the sessions controller next.
 
-== Modify Sessions Controller
+## Modify Sessions Controller
 
 1. Replace the existing create action with the code below:
 
@@ -138,7 +139,7 @@ This should try to login with Facebook, and upon acceptance as a user, you shoul
   
 * While we are not going to use this action in this example, this will enable you to signout users. Similar to above when you create a link using the signout_path it will invoke this action which will wipe all the information out of the session and redirect to the homepage, thus signing the user out.
 
-== Last Step - Showing it off
+## Last Step - Showing it off
 
 Create a homepage, and show the flash message as proof we are signed in. 
 
@@ -170,7 +171,7 @@ Create a homepage, and show the flash message as proof we are signed in.
 
 6. You can also enter ```rails c``` at the command line and then ```User.last``` to see if a user object was stored in your database table. 
 
-== Done!
+## Done!
 
 Hope you found this useful. As mentioned before I recommend checking out the official tutorials, particularly the Rails Apps tutorial which goes into much more depth. 
 
