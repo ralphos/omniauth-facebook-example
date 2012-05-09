@@ -44,10 +44,10 @@ Then
 
 2. Copy this code into your ```omniauth.rb``` file:
 
-    Rails.application.config.middleware.use OmniAuth::Builder do
-      provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
-               :scope => 'email,user_birthday,read_stream', :display => 'popup'
-    end
+  Rails.application.config.middleware.use OmniAuth::Builder do
+    provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
+             :scope => 'email,user_birthday,read_stream', :display => 'popup'
+  end
 
   
 \* You may want to remove the 'ENV' portion along with the [] around your Facebook key and secret.
