@@ -61,13 +61,13 @@ Then
 
 1. We are going to want to use sessions to store information about when a user is logged in and signed out. Therefore we need to:
 
-    rails g controller sessions
+        rails g controller sessions
   
 2. Within the sessions controller we can create a ```create``` action like so:
 
-    def create
-      raise request.env["omniauth.auth"].to_yaml
-    end
+        def create
+          raise request.env["omniauth.auth"].to_yaml
+        end
   
 \* This will output in YAML format the hash we get back from Facebook. 
 
@@ -75,11 +75,11 @@ Then
 
 1. Add these routes to ```config/routes.rb```
 
-    match '/auth/:provider/callback' => 'sessions#create'
+        match '/auth/:provider/callback' => 'sessions#create'
   
-    match '/signout' => 'sessions#destroy', :as => :signout
+        match '/signout' => 'sessions#destroy', :as => :signout
   
-    match '/signin' => 'sessions#new', :as => :signin
+        match '/signin' => 'sessions#new', :as => :signin
   
 The first route defined above will direct the callback from Facebook to the sessions#create action. If you think
 about it in terms of hash being returned from Facebook then you can see how we will set up the create action to take in that hash and check if a user exists or create a new user using that information. 
@@ -96,16 +96,16 @@ This should try to login with Facebook, and upon acceptance as a user, you shoul
 
 1. Add this code to your ```User.rb``` file
 
-    def self.create_with_omniauth(auth)
-      create! do |user|
-        user.provider = auth['provider']
-        user.uid = auth['uid']
-        if auth['info']
-          user.name = auth['info']['name'] || ""
-          user.email = auth['info']['email'] || ""
+        def self.create_with_omniauth(auth)
+          create! do |user|
+            user.provider = auth['provider']
+            user.uid = auth['uid']
+            if auth['info']
+              user.name = auth['info']['name'] || ""
+              user.email = auth['info']['email'] || ""
+            end
+          end
         end
-      end
-    end
   
 \* When called this method will try and create a new user using the values of the keys in the ```auth``` hash which we will define in the sessions controller next.
 
@@ -113,30 +113,30 @@ This should try to login with Facebook, and upon acceptance as a user, you shoul
 
 1. Replace the existing create action with the code below:
 
-    def create
-      auth = request.env["omniauth.auth"]
-      user = User.where(:provider => auth['provider'], 
-                        :uid => auth['uid']).first || User.create_with_omniauth(auth)
-      session[:user_id] = user.id
-      redirect_to root_url, :notice => "Signed in!"
-    end
+        def create
+          auth = request.env["omniauth.auth"]
+          user = User.where(:provider => auth['provider'], 
+                            :uid => auth['uid']).first || User.create_with_omniauth(auth)
+          session[:user_id] = user.id
+          redirect_to root_url, :notice => "Signed in!"
+        end
 
 \* This assigns the hash from Facebook into an ```auth``` variable. It then checks if a user exists and if not, it calls the ```create_with_omniauth(auth)``` method we defined in the ```User``` model. Lastly, it sets the ```session[:user_id]``` to the users id and redirects back to the homepage with a notice of "Signed in!".
 
 2. Add a new action to your sessions controller:
 
-    def new
-      redirect_to '/auth/facebook'
-    end
+        def new
+          redirect_to '/auth/facebook'
+        end
   
 \* Remember in the routes we defined a named routed called ```signin``` which was linked to the 'sessions#new' action? Now we can use that named routes e.g. signin_path which will invoke the ```new``` action and redirect to ```/auth/facebook``` to begin the authentication process.
 
 3. Add a destroy action to your sessions controller:
 
-    def destroy
-      reset_session
-      redirect_to root_url, notice => 'Signed out'
-    end
+        def destroy
+          reset_session
+          redirect_to root_url, notice => 'Signed out'
+        end
   
 \* While we are not going to use this action in this example, this will enable you to signout users. Similar to above when you create a link using the signout_path it will invoke this action which will wipe all the information out of the session and redirect to the homepage, thus signing the user out.
 
@@ -146,27 +146,27 @@ Create a homepage, and show the flash message as proof we are signed in.
 
 1. Remove old homepage
 
-    rm public/index.html.erb
+        rm public/index.html.erb
   
 2. Create home controller with index action
 
-    rails g controller home index
+        rails g controller home index
   
 3. Configure routes
 
-    root :to => 'home#index'
+        root :to => 'home#index'
   
 4. Edit 'index.html.erb'
 
-    <h1>Homepage</h1>
-  
-    <ul>
-    <% flash.each do |key, msg| %>
-      <%= content_tag :li, msg, id: key %>
-    <% end %>
-    </ul>
-  
-    <p><%= link_to 'Sign in with Facebook', signin_path %></p>
+        <h1>Homepage</h1>
+
+        <ul>
+        <% flash.each do |key, msg| %>
+          <%= content_tag :li, msg, id: key %>
+        <% end %>
+        </ul>
+
+        <p><%= link_to 'Sign in with Facebook', signin_path %></p>
   
 5. Hit ```rails s``` and check it works! 
 
