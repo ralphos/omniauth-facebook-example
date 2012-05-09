@@ -1,4 +1,5 @@
-== Quick Omniauth-Facebook Demo
+Quick Omniauth-Facebook Demo
+-------------------------------
 
 
 Omniauth is an easy way to add authentication to your Rails app if you don't need username/password. In this example I demo how to add Facebook authentication to your app. 
