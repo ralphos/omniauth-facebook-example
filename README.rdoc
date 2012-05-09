@@ -20,9 +20,9 @@ This tutorial refers to the example code I used to give my CA lightning talk on 
 2. Change directory to <tt>myapp</tt> and start the web server:
        <tt>cd myapp; rails server</tt> (run with --help for options)
 
-3. Add ```gem omniauth-facebook``` to your gemfile.
+3. Add `gem omniauth-facebook` to your gemfile.
 
-4. Run ```bundle install```
+4. Run `bundle install`
 
 You should now have omniauth-facebook ready to go. 
 
