@@ -123,7 +123,7 @@ This should try to login with Facebook, and upon acceptance as a user, you shoul
           redirect_to '/auth/facebook'
         end
   
-Remember in the routes we defined a named routed called ```signin``` which was linked to the 'sessions#new' action? Now we can use that named routes e.g. signin_path which will invoke the ```new``` action and redirect to ```/auth/facebook``` to begin the authentication process.
+  Remember in the routes we defined a named routed called ```signin``` which was linked to the 'sessions#new' action? Now we can use that named routes e.g. signin_path which will invoke the ```new``` action and redirect to ```/auth/facebook``` to begin the authentication process.
 
 3. Add a destroy action to your sessions controller:
 
@@ -132,7 +132,7 @@ Remember in the routes we defined a named routed called ```signin``` which was l
           redirect_to root_url, notice => 'Signed out'
         end
   
-While we are not going to use this action in this example, this will enable you to signout users. Similar to above when you create a link using the signout_path it will invoke this action which will wipe all the information out of the session and redirect to the homepage, thus signing the user out.
+  While we are not going to use this action in this example, this will enable you to signout users. Similar to above when you create a link using the signout_path it will invoke this action which will wipe all the information out of the session and redirect to the homepage, thus signing the user out.
 
 ## Last Step - Showing it off
 
