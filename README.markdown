@@ -15,11 +15,9 @@ This tutorial refers to the example code I used to give my CA lightning talk on 
 ## Getting Started
 
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+1. At the command prompt, create a new Rails application: ```rails new my_app```
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+2. Change directory to <tt>myapp</tt> and start the web server: ```cd my_app```
 
 3. Add `gem omniauth-facebook` to your gemfile.
 
