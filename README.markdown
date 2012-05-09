@@ -17,7 +17,7 @@ This tutorial refers to the example code I used to give my CA lightning talk on 
 
 1. At the command prompt, create a new Rails application: ```rails new my_app```
 
-2. Change directory to <tt>myapp</tt> and start the web server: ```cd my_app```
+2. Change directory to ```myapp``` and start the web server: ```cd my_app```
 
 3. Add `gem omniauth-facebook` to your gemfile.
 
@@ -32,9 +32,7 @@ You should now have omniauth-facebook ready to go.
 
   ```rails g model User provider:string uid:string name:string email:string```
   
-Then
-
-  ```rake db:migrate```
+Then run ```rake db:migrate```
   
 ## Set up Authentication
 
@@ -47,13 +45,11 @@ Then
                    :scope => 'email,user_birthday,read_stream', :display => 'popup'
         end
 
-
-  
-\* You may want to remove the 'ENV' portion along with the [] around your Facebook key and secret.
-\* You will need to define scope if you want to access additional permissions from Facebook
-\* You will also need the to pass in ```:display => 'popup'``` as an additional parameter if you want to create a popup on signin. However, note you will have to write the additional javascript to make this happen!
-
 3. Create a new app at http://developers.facebook.com/ (remember to enter http://localhost:3000) as your site URL
+  
+\* You may want to remove the 'ENV' portion along with the [] around your Facebook key and secret.\n
+\* You will need to define scope if you want to access additional permissions from Facebook\n
+\* You will also need the to pass in ```:display => 'popup'``` as an additional parameter if you want to create a popup on signin. However, note you will have to write the additional javascript to make this happen!
 
 ## Generate a Sessions Controller
 
