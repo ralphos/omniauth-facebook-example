@@ -47,9 +47,9 @@ Then run ```rake db:migrate```
 
 3. Create a new app at http://developers.facebook.com/ (remember to enter http://localhost:3000) as your site URL
   
-\* You may want to remove the 'ENV' portion along with the [] around your Facebook key and secret.\n
-\* You will need to define scope if you want to access additional permissions from Facebook\n
-\* You will also need the to pass in ```:display => 'popup'``` as an additional parameter if you want to create a popup on signin. However, note you will have to write the additional javascript to make this happen!
+* You may want to remove the 'ENV' portion along with the [] around your Facebook key and secret.
+* You will need to define scope if you want to access additional permissions from Facebook
+* You will also need the to pass in ```:display => 'popup'``` as an additional parameter if you want to create a popup on signin. However, note you will have to write the additional javascript to make this happen!
 
 ## Generate a Sessions Controller
 
@@ -63,7 +63,7 @@ Then run ```rake db:migrate```
           raise request.env["omniauth.auth"].to_yaml
         end
   
-\* This will output in YAML format the hash we get back from Facebook. 
+* This will output in YAML format the hash we get back from Facebook. 
 
 ## Create Some Routes
 
@@ -101,7 +101,7 @@ This should try to login with Facebook, and upon acceptance as a user, you shoul
           end
         end
   
-\* When called this method will try and create a new user using the values of the keys in the ```auth``` hash which we will define in the sessions controller next.
+* When called this method will try and create a new user using the values of the keys in the ```auth``` hash which we will define in the sessions controller next.
 
 ## Modify Sessions Controller
 
